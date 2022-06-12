@@ -1,0 +1,8 @@
+name = "worker-pastebin"
+main = "src/index.ts"
+compatibility_date = "2022-06-12"
+
+
+kv_namespaces = [ 
+         { binding = "PASTE", id = "e7bb407389a14340b67c30dba0f8d8b8", preview_id = "f7259b4f3b844c08bb4640b64a7bb1b9" }
+]
