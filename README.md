@@ -1,8 +1,8 @@
 # paste
-serverless dead-simple pastebin
+serverless, dead-simple, plain-text pastebin
 
 # Usage
-+ Use my ppaste script to use my worker for your pastes, if you're okay with the possibility that I could see your pastes
++ Use my ppaste script to use my worker for your pastes, if you're okay with the fact that I could see your pastes. I don't plan on checking it beyond debugging my code. Paste TTL's default to 30 days.
 
 
 # Self-host on Cloudflare
