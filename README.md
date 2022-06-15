@@ -1,5 +1,5 @@
 # paste
-serverless, dead-simple, plain-text pastebin
+serverless, dead-simple, paste text/binary blob pastebin
 
 # Usage
 + Use my ppaste script to use my worker for your pastes, if you're okay with the fact that I could see your pastes. I don't plan on checking it beyond debugging my code. Paste TTL's default to 30 days.
@@ -16,4 +16,4 @@ serverless, dead-simple, plain-text pastebin
 
 
 # TODO
-+ Simple web interface with a textbox and a button / enter to save a paste
++ Simple web interface with a textbox/upload button to save a paste
