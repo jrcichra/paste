@@ -1,4 +1,5 @@
-import { PasteKV } from "./types";
+import { base32 } from "rfc4648";
+
 declare var PASTE: KVNamespace;
 
 export async function get(request: Request): Promise<Response> {
@@ -13,12 +14,7 @@ export async function get(request: Request): Promise<Response> {
   const paste = await PASTE.get(id);
   if (paste) {
     // display the paste
-    return new Response(paste, {
-      status: 200,
-      headers: {
-        "Content-Type": "text/plain",
-      },
-    });
+    return new Response(base32.parse(paste));
   } else {
     return new Response(
       JSON.stringify({ error: `${id} not found or was empty` }),
