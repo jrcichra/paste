@@ -14,7 +14,10 @@ export async function get(request: Request): Promise<Response> {
   const paste = await PASTE.get(id);
   if (paste) {
     // display the paste
-    return new Response(base32.parse(paste));
+    return new Response(base32.parse(paste), {
+      status: 200,
+      headers: { "Content-Type": "text/plain; charset=utf-8" },
+    });
   } else {
     return new Response(
       JSON.stringify({ error: `${id} not found or was empty` }),

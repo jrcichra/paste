@@ -18,6 +18,6 @@ export async function post(request: Request): Promise<Response> {
   // return the url to the paste
   return new Response(request.url.replace(/\/$/, "") + "/" + id + "\n", {
     status: 200,
-    headers: { "Content-Type": "text/plain" },
+    headers: { "Content-Type": "text/plain; charset=utf-8" },
   });
 }
