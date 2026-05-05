@@ -1,19 +1,38 @@
 # paste
+
 serverless, dead-simple, paste text/binary blob pastebin
 
-# Usage
-+ Use my ppaste script to use my worker for your pastes, if you're okay with the fact that I could see your pastes. I don't plan on checking it beyond debugging my code. Paste TTL's default to 30 days.
+## Usage
 
+Use the `ppaste` script to paste to your worker. Paste TTLs default to 30 days.
 
-# Self-host on Cloudflare
+```bash
+echo "hello world" | ppaste
+# Returns URL like https://worker-pastebin.jrcichra.workers.dev/<id>
+```
 
-+ `npx wrangler2 login` if you haven't already
-+ `npx wrangler2 kv:namespace create "pastebin"`
-+ `npx wrangler2 kv:namespace create "pastebin" --preview`
-+ Replace my KV keys with yours
-+ `npx wrangler2 publish`
-+ Change `./ppaste` to use your URL instead of mine
+## Development
 
+```bash
+npm install
+npx wrangler dev
+```
 
-# TODO
-+ Simple web interface with a textbox/upload button to save a paste
+## Deployment
+
+Connected via Cloudflare GitHub App - deploys automatically on push to `main`.
+
+To set up auto-deploy:
+1. Go to Cloudflare Dashboard → Workers & Pages
+2. Select your worker → Settings → Git
+3. Connect your GitHub repository
+
+## Self-host (manual)
+
+```bash
+npx wrangler login
+npx wrangler kv:namespace create "pastebin"
+npx wrangler kv:namespace create "pastebin" --preview
+# Update kv_namespaces in wrangler.toml with your IDs
+npx wrangler deploy
+```
