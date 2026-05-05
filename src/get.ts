@@ -11,10 +11,10 @@ export async function get(request: Request): Promise<Response> {
       headers: { "Content-Type": "application/json" },
     });
   }
-  const paste = await PASTE.get(id);
+  const paste = await PASTE.get(id, "arrayBuffer");
   if (paste) {
     // display the paste
-    return new Response(base32.parse(paste), {
+    return new Response(paste, {
       status: 200,
       headers: { "Content-Type": "text/plain; charset=utf-8" },
     });

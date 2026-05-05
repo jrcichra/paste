@@ -12,7 +12,7 @@ export async function post(request: Request): Promise<Response> {
   );
 
   const id = crypto.randomUUID();
-  await PASTE.put(id, base32.stringify(view), {
+  await PASTE.put(id, view, {
     expirationTtl: ttl,
   });
   // return the url to the paste
