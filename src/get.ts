@@ -1,8 +1,7 @@
 import { base32 } from "rfc4648";
+import type { Env } from "./index";
 
-declare var PASTE: KVNamespace;
-
-export async function get(request: Request): Promise<Response> {
+export async function get(request: Request, env: Env): Promise<Response> {
   // get the id from the url
   const id = new URL(request.url).pathname.split("/").pop();
   if (!id) {
@@ -11,7 +10,7 @@ export async function get(request: Request): Promise<Response> {
       headers: { "Content-Type": "application/json" },
     });
   }
-  const paste = await PASTE.get(id, "arrayBuffer");
+  const paste = await env.PASTE.get(id, "arrayBuffer");
   if (paste) {
     // display the paste
     return new Response(paste, {

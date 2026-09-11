@@ -1,6 +1,6 @@
-declare var SHOUT: KVNamespace;
+import type { Env } from "./index";
 
-export async function del(request: Request): Promise<Response> {
+export async function del(request: Request, env: Env): Promise<Response> {
   // get the id from the url
   const id = new URL(request.url).pathname.split("/").pop();
   if (!id) {
@@ -11,7 +11,7 @@ export async function del(request: Request): Promise<Response> {
   }
 
   // make sure the key has the UUID they provided
-  const paste = await SHOUT.get(id);
+  const paste = await env.PASTE.get(id);
   if (!paste) {
     return new Response(JSON.stringify({ error: "Not found" }), {
       status: 404,
@@ -19,7 +19,7 @@ export async function del(request: Request): Promise<Response> {
     });
   }
 
-  await SHOUT.delete(id);
+  await env.PASTE.delete(id);
   return new Response(JSON.stringify({ success: true }), {
     status: 200,
     headers: { "Content-Type": "application/json" },
