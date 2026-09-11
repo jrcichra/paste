@@ -1,8 +1,12 @@
 import { del } from "./del";
 import { get } from "./get";
 import { post } from "./post";
+import type { Env } from "./index";
 
-export async function handleRequest(request: Request): Promise<Response> {
+export async function handleRequest(
+  request: Request,
+  env: Env
+): Promise<Response> {
   let response: Response;
 
   const url = new URL(request.url);
@@ -17,11 +21,11 @@ export async function handleRequest(request: Request): Promise<Response> {
       headers: { "Content-Type": "text/html" },
     });
   } else if (request.method === "POST") {
-    response = await post(request);
+    response = await post(request, env);
   } else if (request.method === "GET") {
-    response = await get(request);
+    response = await get(request, env);
   } else if (request.method === "DELETE") {
-    response = await del(request);
+    response = await del(request, env);
   } else {
     response = new Response(
       JSON.stringify({ error: "Invalid request method" }),

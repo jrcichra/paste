@@ -1,9 +1,8 @@
 import { base32 } from "rfc4648";
-
-declare var PASTE: KVNamespace;
+import type { Env } from "./index";
 
 const DEFAULT_TTL = 60 * 60 * 24 * 30; // 30 days
-export async function post(request: Request): Promise<Response> {
+export async function post(request: Request, env: Env): Promise<Response> {
   const arrayBuffer = await request.arrayBuffer();
   const view = new Uint8Array(arrayBuffer);
   // get ttl from query string
@@ -12,7 +11,7 @@ export async function post(request: Request): Promise<Response> {
   );
 
   const id = crypto.randomUUID();
-  await PASTE.put(id, view, {
+  await env.PASTE.put(id, view, {
     expirationTtl: ttl,
   });
   // return the url to the paste

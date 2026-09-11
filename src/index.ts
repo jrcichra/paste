@@ -1,5 +1,11 @@
 import { handleRequest } from "./handler";
 
-addEventListener("fetch", (event) => {
-  event.respondWith(handleRequest(event.request));
-});
+export interface Env {
+  PASTE: KVNamespace;
+}
+
+export default {
+  async fetch(request: Request, env: Env): Promise<Response> {
+    return handleRequest(request, env);
+  },
+};
